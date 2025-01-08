@@ -16,7 +16,7 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         script {
-          def app = docker.build "${env.DOCKER_IMAGE_TAG}"
+          app = docker.build "${env.DOCKER_IMAGE_TAG}"
         }
 
       }
@@ -28,8 +28,8 @@ pipeline {
           docker.withRegistry('https://registry.hub.docker.com', 'docker_creds')
 
           {
-            docker.push("${env.DOCKER_IMAGE_TAG}")
-
+            app.push("${env.BUILD_NUMBER}")
+            app.push('latest')
           }
         }
 
