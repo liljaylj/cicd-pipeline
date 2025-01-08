@@ -1,21 +1,29 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:lts-slim'
+    }
+
+  }
   stages {
-    stage('Build') {
+    stage('Application Build') {
       steps {
         sh 'sh ./scripts/build.sh'
       }
     }
 
-    stage('Test') {
+    stage('Tests') {
       steps {
         sh 'sh ./scripts/test.sh'
       }
     }
 
-    stage('error') {
+    stage('Docker Image Build') {
       steps {
-        sh 'docker build -t liljaylj/practical-task'
+        script {
+          docker.build 'liljaylj/epam-task'
+        }
+
       }
     }
 
