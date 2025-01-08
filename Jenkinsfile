@@ -16,11 +16,23 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         script {
-          docker.build 'liljaylj/epam-task'
+          docker.build '${env.DOCKER_IMAGE_TAG}'
         }
 
       }
     }
 
+    stage('Docker Image Push') {
+      steps {
+        script {
+          docker.push '${env.DOCKER_IMAGE_TAG}'
+        }
+
+      }
+    }
+
+  }
+  environment {
+    DOCKER_IMAGE_TAG = 'liljaylj/epam-task'
   }
 }
