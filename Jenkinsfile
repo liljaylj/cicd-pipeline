@@ -16,7 +16,7 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         script {
-          docker.build '${env.DOCKER_IMAGE_TAG}'
+          docker.build "${env.DOCKER_IMAGE_TAG}"
         }
 
       }
@@ -25,7 +25,7 @@ pipeline {
     stage('Docker Image Push') {
       steps {
         script {
-          docker.push '${env.DOCKER_IMAGE_TAG}'
+          docker.push "${env.DOCKER_IMAGE_TAG}"
         }
 
       }
