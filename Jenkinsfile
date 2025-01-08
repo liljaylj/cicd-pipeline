@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:lts-slim'
-    }
-
-  }
+  agent any
   stages {
     stage('Build') {
       steps {
@@ -18,7 +13,7 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('error') {
       steps {
         sh 'docker build -t liljaylj/practical-task'
       }
