@@ -28,8 +28,8 @@ pipeline {
           docker.withRegistry('https://registry.hub.docker.com', 'docker_creds')
 
           {
-            app.push("${env.BUILD_NUMBER}")
-            app.push('latest')
+            docker.push("${env.DOCKER_IMAGE_TAG}")
+
           }
         }
 
